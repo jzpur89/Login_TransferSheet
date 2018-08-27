@@ -1,0 +1,290 @@
+:root {
+  --primary: #ddd;
+  --dark: #333;
+  --light #fff;
+  --shadow: 0 1px 5 px rgba(104, 104, 104, 0.8);
+}
+
+html {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  color: var(--dark);
+}
+
+body {
+  background: #ccc;
+  margin: auto;
+  line-height: 1.4;
+}
+
+.wrapper {
+  width: 90%;
+  margin: auto;
+  padding: 25px;
+}
+
+.header-wrap {
+  text-align: center;
+  border: 2px solid var(--dark);
+  border-radius: 200px;
+}
+
+.header-wrap span {
+  font-size: 1.6rem;
+  margin: 0px 30px;
+  font-weight: 700;
+}
+
+.content-wrap {
+  padding: 10px 10px 2px 10px;
+}
+
+.content-wrap #pharmacist {
+  display: block;
+  padding: 5px;
+  width: 170px;
+  margin: auto;
+}
+
+.pharmacist-box {
+  display: grid;
+  grid-gap: 10px;
+  padding: 20px;
+}
+
+.pharmacist-grid:hover {
+  background-color: yellow;
+}
+
+.pharmacist-grid {
+  display: grid;
+  padding: 20px;
+  background: var(--primary);
+  padding: 0.8rem;
+  color: var(--dark);
+  box-shadow: var(--shadow);
+  border-radius: 15px;
+  width: 50%;
+  margin: auto;
+}
+
+.content-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 5px;
+}
+
+#pharmacist {
+  font-size: 1.7rem;
+  font-weight: 700;
+}
+
+.content-wrap select {
+  display: block;
+  grid-column: 1 / 3;
+}
+
+.content-wrap p {
+  display: block;
+  text-align: right;
+  font-weight: bold;
+  margin-right: 5px;
+  grid-column: 1 / 2;
+}
+
+.content-wrap input {
+  display: block;
+  width: 150px;
+  height: 30px;
+  align-self: left;
+  font-size: 1.7rem;
+  font-weight: 700;
+  grid-column: 2 / 3;
+}
+
+.patient-form {
+  display: grid;
+  grid-gap: 10px;
+  padding: 20px;
+  list-style: none;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.patient-form .form-group {
+  padding: 15px;
+  width: 50%;
+  margin: auto;
+  background: var(--primary);
+  display: block;
+  text-decoration: none;
+  padding: 0.8rem;
+  text-align: left;
+  color: var(--dark);
+  font-weight: bold;
+  box-shadow: var(--shadow);
+  border-radius: 15px;
+}
+
+.patient-form label {
+  display: block;
+  padding: 5px;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 400;
+}
+
+.patient-form input[type="text"] {
+  display: block;
+  width: 70%;
+  padding: 5px;
+  margin: auto;
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.patient-form input[type="date"] {
+  display: block;
+  width: auto;
+  margin: auto;
+  font-size: 1.7rem;
+  padding: 5px;
+  font-family: sans-serif;
+}
+
+.patient-form .form-group:hover {
+  background-color: yellow;
+}
+
+.pharmacylist ul {
+  display: grid;
+  grid-gap: 10px;
+  padding: 0;
+  list-style: none;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.pharmacylist li {
+  background: var(--primary);
+  display: block;
+  text-decoration: none;
+  padding: 0.8rem;
+  text-align: left;
+  color: var(--dark);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: bold;
+  box-shadow: var(--shadow);
+  border-radius: 15px;
+}
+
+.pharmacylist li:hover {
+  background-color: yellow;
+}
+
+.pharmacylist li:hover label {
+  font-weight: 900;
+  font-size: 1.1rem;
+}
+
+.medication-grid {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-rows: 1fr 2fr;
+}
+
+.medication-grid div {
+  padding: 15px;
+  width: 60%;
+  margin: auto;
+  background: var(--primary);
+  display: block;
+  text-align: left;
+  color: var(--dark);
+  text-transform: uppercase;
+  box-shadow: var(--shadow);
+  border-radius: 15px;
+}
+
+.medication-grid label {
+  font-size: 1.2rem;
+}
+
+.medication-grid textarea {
+  margin: auto;
+}
+
+.medication-grid .meditem2 {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.medication-grid div:hover {
+  background-color: yellow;
+}
+
+.notes-grid {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 1fr;
+  padding-top: 15px;
+}
+
+.notes-grid div {
+  padding: 15px;
+  width: 60%;
+  margin: auto;
+  background: var(--primary);
+  display: block;
+  text-align: left;
+  color: var(--dark);
+  text-transform: uppercase;
+  box-shadow: var(--shadow);
+  border-radius: 15px;
+}
+
+.notes-grid div:hover {
+  background-color: yellow;
+}
+
+.notes-grid textarea {
+  margin: auto;
+}
+
+#button {
+  display: block;
+  background-color: green;
+  color: white;
+  border: 1px solid red;
+  margin: auto;
+  width: 20%;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+label {
+  vertical-align: middle;
+}
+
+input[type="radio"] {
+  width: 2em;
+  height: 2em;
+  vertical-align: middle;
+}
+
+#icons {
+  color: var(--dark);
+  text-shadow: 2px 2px 2px black;
+  font-size: 2.5em;
+}
+
+textarea{
+  resize: none;
+  width: 90%;
+  height:100px;
+  padding: 5px;
+  font-size: 1.2rem;
+  display: block;
+}
