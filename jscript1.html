@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Transfer Sheet</title>
+    <link rel="stylesheet" href="cssjs1.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy" crossorigin="anonymous"></script>
+  </head>
+  <h1>PRESCRIPTION TRANSFER REQUEST</h1>
+  <div class="header-grid">
+    <div class="header" id="alisallogo">
+      <img src="logo.png" alt="Logo">
+    </div>
+    <div class="header" id="alisalinfo">
+      <h1>ALISAL PHARMACY INFORMATION</h1>
+      <p>323 N SANBORN RD</p>
+      <p>SALINAS, CA 93905</p>
+      <div class="alisalinfo-grid">
+        <p><i class="fas fa-phone"></i> PHONE:</p>
+        <p>(831) 424-7321</p>
+        <p><i class="fas fa-fax"></i> FAX:</p>
+        <p>(831) 424-0197</p>
+        <p><i class="fas fa-pills"></i> DEA:</p>
+        <p>FA7689221</p>
+      </div>
+    </div>
+  </div>
+  <hr>
+    <div class="content1-grid">
+      <div class="content1" id="attention">
+        <h1>ATTENTION</h1>
+        <p><span class="pharmacyName"></span> Pharmacist: ALISAL PHARMACY's pharmacist-on-duty, <span class="pharmacist"></span>, is requesting a prescription transfer for the following patient.</p>
+      </div>
+      <div class="content1" id="datetime">
+        <h1>DATE & TIME</h1>
+        <p><i class="fas fa-calendar-alt"></i> <span class="date"></span></p>
+        <p><i class="fas fa-clock"></i> <span class="time"></span></p>
+      </div>
+      <div class="content1" id="patientinfo">
+        <h1>PATIENT INFORMATION</h1>
+        <div class="patient-grid">
+          <div class="patient-block1">
+            <p>FULL NAME:</p>
+            <p> <span class="fullName"></span></p>
+            <p>LAST NAME:</p>
+            <p> <span class="lName"></p>
+            <p>FIRST NAME:</p>
+            <p> <span class="fName"></p>
+            <p>DATE OF BIRTH:</p>
+            <p> <span class="dateOB2"></p>
+          </div>
+        </div>
+      </div>
+      <div class="content1" id="transferpharmacy">
+        <h1>TRANSFERRING PHARMACY</h1>
+        <p><span class="pharmacyName"></span></p>
+        <p><span id="pharmacyAddress"></span></p>
+        <div class="pharmacyt-grid">
+          <p>PHONE:</p>
+          <p class="pharmacyPhone"></p>
+          <p>FAX:</p>
+          <p class="pharmacyFax"></p>
+        </div>
+      </div>
+      <div class="content1" id="medrequest">
+        <h1>PRESCRIPTION(S) REQUESTED</h1>
+        <p>Please transfer the following prescription(s): <span class="medOther"></span> </p>
+      </div>
+      <div class="content1" id="disclaimer">
+        <h1>DISCLAIMER</h1>
+        <p>This transfer is being made at the request of patient <span class="fullName"></span>.  The patient is aware that the prescription will no longer be available at <span class="pharmacyName"></span> after transferring to ALISAL PHARMACY.</p>
+      </div>
+      <div class="content1" id="notes">
+        <h1>NOTES</h1>
+        <p><span class="notes1"></span></p>
+      </div>
+      <div class="content1" id="confidential">
+        <h1>CONFIDENTIALITY NOTICE</h1>
+        <p>This message is intended for the use of the person or entity to which it is addressed and may contain information that is privileged and confidential, the disclosure of which is governed by applicable law.  If you have received this message in error, please notify the sender immediately and arrange for the destruction of these documents.</p>
+      </div>
+    </div>
+
+    <div class="thanks">
+      <p><i class="far fa-smile-beam" name="icons"></i> PLEASE & THANK YOU <i class="far fa-smile-beam" name="icons"></i></p>
+      <p>FAX ALL PRESCRIPTION TRANSFER(S) TO ALISAL PHARMACY AT (831) 424-0197</p>
+    </div>
+    <hr>
+    <div class="footer1">
+      <h1>ALISAL PHARMACY USE ONLY</h1>
+      <p>Fax this Prescription Transfer Request to <span class="pharmacyName"></span> at <span class="pharmacyFax"></span></p>
+    </div>
+  </body>
+  <script>
+      // $('input').focus(function(){
+      //   $(this).css('background', 'pink')
+      // });
+      //
+      // $('input').blur(function(){
+      //   $(this).css('background', 'white')
+      // });
+
+      // $('input').keyup(function(e){
+      //   console.log(e.target.value)
+      // })
+
+      // $('select#gender').change(function(e){
+      //   alert(e.target.value);
+      // });
+
+      function unloadData(){
+        var fName = localStorage.getItem("fName");
+        var lName = localStorage.getItem("lName");
+        var fullName = localStorage.getItem("fullName");
+        var dateOB2 = localStorage.getItem("dateOB2");
+        var medOther = localStorage.getItem("medOther");
+        var pharmTransfer = localStorage.getItem("pharmTransfer");
+        var pharmacist = localStorage.getItem("pharmacist");
+        var notes1 = localStorage.getItem("notes1");
+        detectPharmacy(pharmTransfer);
+        $('.lName').html(lName);
+        $('.fName').html(fName);
+        $('.fullName').html(fullName);
+        $('.dateOB2').html(dateOB2);
+        $('.medOther').html(medOther);
+        $('.pharmacist').html(pharmacist);
+        $('.notes1').html(notes1);
+        // var dateOB = $('input#dateOB').val();
+        // var splitDOB = dateOB.split('-');
+        // var dateOB2 = splitDOB[1] + '/' + splitDOB[2] + '/' + splitDOB[0];
+        // alert('Transfer Sheet Created For ' + fullName);
+      }
+
+      function formatDate(date) {
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+        var days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"];
+        var namedDay = days[d.getDay()];
+        hours = hours % 12;
+        hours = hours ? hours : 12; // the hour '0' should be '12'
+        minutes = minutes < 10 ? '0'+minutes : minutes;
+        var strTime = hours + ':' + minutes + " " + ampm;
+        var currentDateTime = date.getMonth()+1 + "-" + date.getDate() + "-" + date.getFullYear() + " " + namedDay + " " + strTime;
+        var currentMonth = date.getMonth() + 1;
+        var currentDate = namedDay + " " + currentMonth + "-" + date.getDate() + "-" + date.getFullYear();
+        $('.date').html(currentDate);
+        $('.time').html(strTime);
+      }
+
+      var d = new Date();
+      var e = formatDate(d);
+
+      function detectPharmacy(pharmacy){
+        var pharmacyName = "PHARMACY NAME"
+        var pharmacyAddress = "PHARMACY ADDRESS"
+        var pharmacyPhone = "PHARMACY PHONE"
+        var pharmacyFax = "PHARMACY FAX"
+        if(pharmacy == "ANOP"){
+          var pharmacyName = "A&O PHARMACY"
+          var pharmacyAddress = "610 E ROMIE LN STE 1"
+          var pharmacyPhone = "(831) 758-0976"
+          var pharmacyFax = "(831) 758-4961"
+        }
+        if(pharmacy == "ACP"){
+          var pharmacyName = "ALLCARE PHARMACY"
+          var pharmacyAddress = "331 S MAIN ST"
+          var pharmacyPhone = "(831) 424-8053"
+          var pharmacyFax = "(831) 424-4707"
+        }
+        if(pharmacy == "CVS1"){
+          var pharmacyName = "CVS PHARMACY"
+          var pharmacyAddress = "110 E LAUREL DR"
+          var pharmacyPhone = "(831) 754-1551"
+          var pharmacyFax = "(831) 754-1302"
+        }
+        if(pharmacy == "CVS2"){
+          var pharmacyName = "CVS PHARMACY"
+          var pharmacyAddress = "1140 S MAIN ST"
+          var pharmacyPhone = "(831) 422-8448"
+          var pharmacyFax = "(831) 422-4630"
+        }
+        if(pharmacy == "CVS3"){
+          var pharmacyName = "CVS PHARMACY"
+          var pharmacyAddress = "347 E ALISAL ST"
+          var pharmacyPhone = "(831) 424-0026"
+          var pharmacyFax = "(831) 424-1829"
+        }
+        if(pharmacy == "CVS4"){
+          var pharmacyName = "CVS PHARMACY"
+          var pharmacyAddress = "662 E BORONDA RD"
+          var pharmacyPhone = "(831) 443-0702"
+          var pharmacyFax = "(831) 443-1850"
+        }
+        if(pharmacy == "CVS5"){
+          var pharmacyName = "CVS-TARGET PHARMACY"
+          var pharmacyAddress = "1640 N MAIN ST"
+          var pharmacyPhone = "(831) 442-2961"
+          var pharmacyFax = "(831) 998-9745"
+        }
+        if(pharmacy == "NHP"){
+          var pharmacyName = "NOB HILL PHARMACY"
+          var pharmacyAddress = "1320 S MAIN ST"
+          var pharmacyPhone = "(831) 759-2163"
+          var pharmacyFax = "(831) 759-2198"
+        }
+        if(pharmacy == "RITEAID"){
+          var pharmacyName = "RITE AID PHARMACY"
+          var pharmacyAddress = "602 WILLIAMS RD"
+          var pharmacyPhone = "(831) 784-1606"
+          var pharmacyFax = "(831) 784-1819"
+        }
+        if(pharmacy == "RLP"){
+          var pharmacyName = "ROMIE LANE PHARMACY"
+          var pharmacyAddress = "505 E ROMIE LN STE H"
+          var pharmacyPhone = "(831) 424-0395"
+          var pharmacyFax = "(831) 424-7949"
+        }
+        if(pharmacy == "SAFEWAY1"){
+          var pharmacyName = "SAFEWAY PHARMACY"
+          var pharmacyAddress = "1516 CONSTITUTION BLVD"
+          var pharmacyPhone = "(831) 444-3630"
+          var pharmacyFax = "(831) 444-3634"
+        }
+        if(pharmacy == "SAFEWAY2"){
+          var pharmacyName = "SAFEWAY PHARMACY"
+          var pharmacyAddress = "1546 N MAIN ST"
+          var pharmacyPhone = "(831) 442-7502"
+          var pharmacyFax = "(831) 442-7505"
+        }
+        if(pharmacy == "SHERMANP"){
+          var pharmacyName = "SHERMAN'S PHARMACY"
+          var pharmacyAddress = "1212 S MAIN ST #101"
+          var pharmacyPhone = "(831) 422-5988"
+          var pharmacyFax = "(831) 422-5999"
+        }
+        if(pharmacy == "STARP"){
+          var pharmacyName = "STAR PHARMACY"
+          var pharmacyAddress = "1273 S MAIN ST"
+          var pharmacyPhone = "(831) 621-5558"
+          var pharmacyFax = "(831) 621-5579"
+        }
+        if(pharmacy == "WAG1"){
+          var pharmacyName = "WALGREENS PHARMACY"
+          var pharmacyAddress = "1532 N MAIN ST"
+          var pharmacyPhone = "(831) 443-8717"
+          var pharmacyFax = "(831) 443-0413"
+        }
+        if(pharmacy == "WAG2"){
+          var pharmacyName = "WALGREENS PHARMACY"
+          var pharmacyAddress = "575 N SANBORN RD"
+          var pharmacyPhone = "(831) 751-9319"
+          var pharmacyFax = "(831) 751-1657"
+        }
+        if(pharmacy == "WAL1"){
+          var pharmacyName = "WALMART PHARMACY"
+          var pharmacyAddress = "1375 N DAVIS RD"
+          var pharmacyPhone = "(831) 998-9087"
+          var pharmacyFax = "(831) 998-9081"
+        }
+        if(pharmacy == "WAL2"){
+          var pharmacyName = "WALMART PHARMACY"
+          var pharmacyAddress = "1800 N MAIN ST"
+          var pharmacyPhone = "(831) 751-0260"
+          var pharmacyFax = "(831) 751-0276"
+        }
+        if(pharmacy == "OTHERP"){
+          var pharmacyName = localStorage.getItem("opharmacyName");
+          var pharmacyAddress = localStorage.getItem("opharmacyAddress");
+          var pharmacyPhone = localStorage.getItem("opharmacyPhone");
+          var pharmacyFax = localStorage.getItem("opharmacyFax");
+        }
+        $('.pharmacyName').html(pharmacyName);
+        $('#pharmacyAddress').html(pharmacyAddress);
+        $('.pharmacyPhone').html(pharmacyPhone);
+        $('.pharmacyFax').html(pharmacyFax);
+      }
+
+      window.onload = unloadData();
+      window.onload = formatDate();
+
+  </script>
+</html>
