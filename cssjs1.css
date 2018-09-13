@@ -55,13 +55,13 @@ p {
 .alisalinfo-grid p:nth-child(odd) {
   display: block;
   text-align: right;
-  grid-column: 1 / 25;
+  grid-column: 1 / 30;
 }
 
 .alisalinfo-grid p:nth-child(even) {
   display: block;
   text-align: left;
-  grid-column: 25 / 101;
+  grid-column: 30 / 101;
   margin-left: 5px;
 }
 
